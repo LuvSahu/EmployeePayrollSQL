@@ -41,3 +41,40 @@ UPDATE employee_payroll set Salary=60000 where Name='Deepak';
 UPDATE employee_payroll set Salary=85000 where Name='Luv';
 
 UPDATE employee_payroll set Salary=60001,StartDate=getdate() where Name='Atul';
+
+------------UC7-sum,avrage,min,max,count-------------------
+SELECT * FROM  employee_payroll;
+SELECT SUM(Salary) as TotalSalary from employee_payroll;
+SELECT avg(Salary) as AvergeSalary from employee_payroll;
+SELECT  MIN(Salary) as MINIMUMSalary from employee_payroll;
+SELECT MAX(Salary) as MaximumSalary from employee_payroll;
+SELECT COUNT(Salary) from employee_payroll;
+
+------TO GET THE MINIMUM SALARY WITH MINIMUM SALARY------------
+SELECT * FROM employee_payroll Salary where
+ Salary=(select min(Salary)as MINIMUMSALARY FROM employee_payroll);
+
+ SELECT * FROM employee_payroll Salary where
+ Salary=(select MAX(Salary)as MAXIMUMSALARY FROM employee_payroll);
+
+ SELECT Name,StartDate FROM employee_payroll Salary where
+ Salary=(select MAX(Salary)as MAXIMUMSALARY FROM employee_payroll);
+
+ --------TO count the male and female separetly to all the employee-------
+ SELECT COUNT(Salary)  from employee_payroll group by gender;
+ -----------we also displaying the gender column-------------
+ SELECT COUNT(Salary) as GenderCount,gender from employee_payroll group by gender;
+  --------TO count the male and female separetly to particular the employee-------
+
+  --------UC8-Extending the table bye by adding dept,phonr,address columns---------
+ALTER TABLE employee_payroll
+ADD PhoneNumber bigint;
+ --while adding not null we have to pass default values because we are altering it----------
+ALTER TABLE employee_payroll
+ADD Department varchar(200)NOT NULL default'IT';
+ 
+select * from employee_payroll;
+
+ALTER TABLE employee_payroll
+ADD Address varchar(200) default 'Dehli';
+
